@@ -11,10 +11,30 @@ sounds.forEach((sound) => {
     //Add class of 'btn' to button element
 btn.classList.add('btn');
 
+
+//Stop all sounds first
+stopSounds();
+document.getElementById(sound).play();
+
+//Add event listerner to button
+btn.addEventListener('click', () => {
+    document.getElementById(sound).play();
+})
+
 //Set button lavel text to  be the same as string value
 btn.innerText = sound;
 
 // Add button to DOM
-document.getElementByID('buttons').appendChild(btn);
+document.getElementById('buttons').appendChild(btn);
 
 });
+
+//Helper Function
+function stopSounds() {
+    sounds.forEach((sound) => { 
+        const snd = document.getElementByID(sound);
+
+        snd.pause();
+        snd.currentTime = 0;
+});
+}
